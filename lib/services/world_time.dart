@@ -7,6 +7,7 @@ class WorldTime {
   late String time;
   late String flag; // url for flag icon
   late String locationEndpoint; // location url for api endpoint
+  late bool isDayTime;
 
   WorldTime(
       {required this.location,
@@ -28,6 +29,7 @@ class WorldTime {
       DateTime now = DateTime.parse(dateTime);
       now = now.add(Duration(hours: int.parse(hours), minutes: int.parse(min)));
 
+      isDayTime = (now.hour > 6 && now.hour < 20) ? true : false;
       time = DateFormat.jm().format(now);
     } catch (error) {
       time = 'Failed getting date and time';
